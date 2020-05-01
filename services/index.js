@@ -1,4 +1,4 @@
-const UsersService=require('./Usersservice');
+const UsersService=require('./UsersService');
 
 module.exports={
     UsersService

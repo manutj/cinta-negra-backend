@@ -20,13 +20,13 @@ module.exports={
     },
 
     update:(req,res)=>{
-        UsersService.update(req.params.id,req.body,{new:true})
+        UsersService.update(req.params.id,req.body)
         .then(user=>{res.status(200).send(user)})
         .catch(err=>res.status(404).send({message:'No se pudo actualizar el usuario'}));
     },
 
     delete:(req,res)=>{
-        UsersService.delete(req.params.id)
+        UsersService.update(req.params.id,{is_active:false})
         .then(user=>{res.status(200).send('Usuario eliminado correctamente')})
         .catch(err=>res.status(404).send({message:'Usuario no encontrado'}));
     },
