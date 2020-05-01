@@ -4,18 +4,18 @@ const UsersController=require('../controller/UsersController')
 
 
 //CREATE
-router.post('/api/v1/users', UsersController.create);
+router.post('/users', UsersController.create);
     
 //GET ALL
-router.get('/api/v1/users', UsersController.find);
+router.get('/users', UsersController.find);
 
 //GET ONE
-router.get('/api/v1/users/:id', UsersController.findOne);
+router.get('/users/:id', UsersController.findOne);
 
 //UPDATE
-router.patch('/api/v1/users/:id', UsersController.update);
+router.patch('/users/:id', UsersController.update);
 
 //DELETE
-router.delete('/api/v1/users/:id', UsersController.delete);
+router.delete('/users/:id', UsersController.delete);
 
 module.exports=router
