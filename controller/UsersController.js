@@ -1,5 +1,6 @@
 
-const {UsersService} = require('../services')
+const {UsersService} = require('../services');
+const utils=require('../utils');
 module.exports={
     create:(req,res)=>{
     UsersService.create(req.body)
@@ -42,10 +43,14 @@ module.exports={
         try {
             const user = await UsersService.findByEmail(email);
             if (!user) res.status(404).send({ message: 'User not found' });
-            console.log('🚀', user);
             const isMatch = UsersService.comparePasswords(password, user.password);
             if (!isMatch) res.status(400).send({ message: 'Invalid credentials' });
-            res.status(200).send({ message: "step inside, brother" });
+            const token=utils.createToken({
+                id:user._id,
+                name:user.first_name,
+                email:user.email
+            });
+            res.status(200).send({ message: "step inside, brother",token});
           } catch (error) {
             console.log(error);
             res.status(400).send({ message: 'Error on login', error });
