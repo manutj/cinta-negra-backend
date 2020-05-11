@@ -15,7 +15,6 @@ module.exports={
     findByEmail:(email)=>Users.findOne({email}),
 
     comparePasswords:(candidatePassword, password) => {
-        console.log('🌎', candidatePassword, password);
         return bcrypt.compareSync(candidatePassword, password);
       }
         
