@@ -20,7 +20,14 @@ module.exports={
         .catch(err=>res.status(404).send({message:'Usuario no encontrado'}));
     },
 
-    update:(req,res)=>{
+    update:async(req,res)=>{
+        if(req.files){
+          const {photo}=req.files  
+          const upload=await utils.uploadFile(photo.tempFilePath);
+          if(upload){
+              req.body.profile_img=upload.url
+            }
+        }
         UsersService.update(req.params.id,req.body)
         .then(user=>{res.status(200).send(user)})
         .catch(err=>res.status(404).send({message:'No se pudo actualizar el usuario'}));
