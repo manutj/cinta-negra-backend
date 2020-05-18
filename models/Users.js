@@ -25,6 +25,9 @@ const usersSchema=new mongoose.Schema({
     password:{
         type:String,
     },
+    profile_img:{
+        type:String
+    },
     roles:[rolesSchema]
 });
 
